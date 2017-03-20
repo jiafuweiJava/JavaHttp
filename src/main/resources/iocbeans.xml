@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"  
+ "http://www.springframework.org/dtd/spring-beans.dtd">  
+   
+<beans>  
+  
+  
+	<!--配置bean,配置后该类由spring管理-->  
+    <bean name="springAction" class="com.jiaufwei.springioc.SpringAction">  
+        <!--(1)依赖注入,配置当前类中相应的属性-->  
+        <property name="springDao" ref="springDao"></property>  
+    </bean>  
+	<bean name="springDao" class="com.jiaufwei.springioc.SpringDao"></bean>  
+
+    <bean name="springAction2" class="com.jiaufwei.springioc.SpringAction2">  
+        <constructor-arg index="0" ref="springDao"></constructor-arg>  
+        <constructor-arg index="1" ref="user"></constructor-arg>  
+    </bean> 
+   <bean name="user" class="com.jiaufwei.springioc.User"></bean>
+    
+</beans> 

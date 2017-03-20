@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>    
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">   
+<mapper namespace="com.hskj.mapper.UserMapper">  
+  
+  <parameterMap type="com.hskj.domain.User" id="parameterMapUser">  
+    <parameter property="id"/>  
+    <parameter property="name"/>  
+  </parameterMap>  
+    
+  <resultMap type="com.hskj.domain.User" id="resultMapUser">  
+    <result property="id" column="id"/>  
+    <result property="name" column="name"/>  
+  </resultMap>  
+    
+  <insert id="insertUser" parameterMap="parameterMapUser">  
+    INSERT INTO user(id,name)  
+    VALUES(?,?)  
+  </insert>  
+  <select id="countAll" resultType="int">  
+        select count(*) c from user;  
+  </select>  
+  <select id="getAllUser"  resultMap="resultMapUser">  
+    SELECT * FROM user  
+  </select>  
+  <select id="getById" parameterType="String" resultMap="resultMapUser">  
+    SELECT * FROM user  
+    WHERE id=#{value}  
+  </select>  
+  <delete id="deleteUser" parameterType="String">  
+    DELETE FROM user   
+    WHERE id=#{value}  
+  </delete>  
+  <update id="updateUser" parameterType="java.util.Map">  
+    UPDATE user  
+    SET name=#{name}  
+    WHERE id=#{id}  
+  </update>  
+</mapper> 
