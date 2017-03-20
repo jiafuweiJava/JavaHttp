@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"  
+ "http://www.springframework.org/dtd/spring-beans.dtd">  
+   
+<beans>  
+  
+  
+<bean id="serviceTarget" class="com.jiaufwei.springaop.test2.ServiceBeanImpl"/>  
+<bean id="logAdvisor" class="com.jiaufwei.springaop.test2.LogAdvisor"/>  
+  
+  
+<!-- 
+	通过配置bean 实现了动态代理  
+	proxyInterfaces:代理接口    
+	target:实体类     
+	intercepterNames:所动态生成的代理类拦截器
+-->  
+<bean id="service" class="org.springframework.aop.framework.ProxyFactoryBean">  
+    <property name="proxyInterfaces"><value>com.jiaufwei.springaop.test2.ServiceBean</value></property>  
+    <property name="target"><ref local="serviceTarget"/></property>  
+    <property name="interceptorNames">  
+        <list>  
+            <value>logAdvisor</value>  
+        </list>  
+    </property>  
+</bean>  
+  
+  
+</beans> 
