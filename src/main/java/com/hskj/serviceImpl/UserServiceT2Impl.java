@@ -1,16 +1,17 @@
-package com.hskj.dao.serviceImpl;
+package com.hskj.serviceImpl;
 
 import java.util.Map;  
-
 import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.stereotype.Service;  
-  
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import com.hskj.dao.UserDao;  
 import com.hskj.domain.User;  
-import com.hskj.service.UserService; 
+import com.hskj.service.UserService;
 
-@Service("userService")  
-public class UserServiceImpl implements UserService {  
+@Transactional
+@Service("userServiceT2")  
+public class UserServiceT2Impl implements UserService {  
     @Autowired  
     private UserDao userDao;  
     
@@ -32,7 +33,11 @@ public class UserServiceImpl implements UserService {
       
     public void deleteUser(String id) {  
         this.userDao.deleteUser(id);  
+        Integer abc = null ;
+        abc.equals(1);
+        
         //throw new RuntimeException("deleteUser Error");
-        int a = 1/0;
+        //int a = 1/0;
+        
     } 
 } 
